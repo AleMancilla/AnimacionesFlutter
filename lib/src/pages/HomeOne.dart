@@ -6,7 +6,7 @@ class HomeOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: HeaderOne(),
+      body: HeaderRedondeado(),
     );
   }
 }
