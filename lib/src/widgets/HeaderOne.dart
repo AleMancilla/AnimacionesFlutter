@@ -74,6 +74,21 @@ class HeaderEnV extends StatelessWidget {
   }
 }
 
+class HeaderEnCurve extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      //color: Colors.purpleAccent,
+      child: CustomPaint(
+        painter: _HeaderCurvePainter(),
+      ),
+    );
+  }
+}
+
 
 //################################################3
 
@@ -157,6 +172,40 @@ class _HeaderVPainter extends CustomPainter{
     path.lineTo(size.width * 0.5, size.height *0.40);
     path.lineTo(size.width, size.height * 0.3);
     path.lineTo(size.width, 0);
+    
+
+
+    canvas.drawPath(path, lapiz);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    // TODO: implement shouldRepaint
+    return true;
+  }
+
+}
+
+class _HeaderCurvePainter extends CustomPainter{
+  @override
+  void paint(Canvas canvas, Size size) {
+    // TODO: implement paint
+    final lapiz = Paint();
+    //propiedades
+    lapiz.color = Colors.purpleAccent;
+    lapiz.style = PaintingStyle.fill;//stroke 
+    lapiz.strokeWidth = 10;
+
+    final path = Path();
+
+    //dibujar con el path y el lapiz
+    path.moveTo(0, 0);
+    path.lineTo(0, size.height * 0.3);
+    path.quadraticBezierTo(size.width * 0.5, size.height *0.50, size.width, size.height * 0.3);
+    //path.lineTo(size.width * 0.5, size.height *0.40);
+    //path.lineTo(size.width, size.height * 0.3);
+    path.lineTo(size.width, 0);
+    
 
 
     canvas.drawPath(path, lapiz);
