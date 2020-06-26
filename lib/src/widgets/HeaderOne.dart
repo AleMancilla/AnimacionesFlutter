@@ -103,9 +103,9 @@ class _HeaderTrianglePainter extends CustomPainter{
     final path = Path();
 
     //dibujar con el path y el lapiz
-    path.moveTo(0, 0);
+    //path.moveTo(0, 0);
     path.lineTo(size.width, size.height );
-    path.lineTo(size.width, 0);
+    path.lineTo(0, size.height);
 
 
     canvas.drawPath(path, lapiz);
