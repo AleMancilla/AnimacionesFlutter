@@ -25,6 +25,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
   Animation<double> rotacion;
   Animation<double> opacidad;
   Animation<double> moverDerecha;
+  Animation<double> escala;
 
   @override
   void initState() {
@@ -35,6 +36,7 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
     rotacion = Tween(begin: 0.0 , end: 2 * Math.pi).animate(CurvedAnimation(parent: controller, curve: Curves.fastLinearToSlowEaseIn));
     opacidad = Tween(begin: 0.1, end: 1.0).animate(CurvedAnimation(parent: controller, curve: Interval(0, 0.25,curve: Curves.fastOutSlowIn)));
     moverDerecha = Tween(begin: 0.0, end: 200.0).animate(CurvedAnimation(parent: controller, curve: Curves.bounceInOut));
+    escala = Tween(begin: 0.0, end: 2.0).animate(CurvedAnimation(parent: controller, curve: Curves.bounceInOut));
 
     controller.addListener(() {
       print('Status: ${ controller.status }');
@@ -74,7 +76,10 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
             angle: rotacion.value ,
             child: Opacity(
               opacity: opacidad.value,
-              child: childRectangle,
+              child: Transform.scale(
+                scale: escala.value,
+                child: childRectangle
+              ),
             ),
           ),
         );
