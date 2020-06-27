@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as Math;
 
 class AnimacionesPage extends StatelessWidget {
 
@@ -13,9 +14,6 @@ class AnimacionesPage extends StatelessWidget {
 }
 
 class CuadradoAnimado extends StatefulWidget {
-  const CuadradoAnimado({
-    Key key,
-  }) : super(key: key);
 
   @override
   _CuadradoAnimadoState createState() => _CuadradoAnimadoState();
@@ -23,16 +21,26 @@ class CuadradoAnimado extends StatefulWidget {
 
 class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProviderStateMixin{
 
-  AnimationController aController;//linea de tiempo
+  AnimationController controller;//linea de tiempo
   Animation<double> rotacion;
 
   @override
   void initState() {
     // TODO: implement initState
 
-    aController = new AnimationController(vsync: this,duration: Duration(microseconds: 4000));
+    controller = new AnimationController(vsync: this ,duration: Duration(milliseconds: 4000));
 
-    rotacion = Tween(begin: 0.0 , end: 2.0).animate(aController);
+    rotacion = Tween(begin: 0.0 , end: 2 * Math.pi).animate(controller);
+
+    controller.addListener(() {
+      print('Status: ${ controller.status }');
+      //if(controller.status == AnimationStatus.completed){
+      //  controller.reverse();
+      //}
+      //else if (controller.status == AnimationStatus.dismissed){
+      //  controller.forward();
+      //}
+    });
 
     super.initState();
   }
@@ -41,18 +49,31 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
   void dispose() {
     // TODO: implement dispose
 
-    aController.dispose();
+    controller.dispose();
 
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return _Rectangulo();
+
+    controller.repeat(); //reproduccion
+
+    return AnimatedBuilder(
+      animation: controller,
+      //child: child, // opcional
+      builder: (BuildContext context, Widget child) {
+        //print("Rotacion : ${rotacion.value.toString()}");
+        return Transform.rotate(
+          angle: rotacion.value ,
+          child: _Rectangulo(),
+        );
+      },
+    );
   }
 }
 
-
+ 
 
 
 class _Rectangulo extends StatelessWidget {
@@ -63,7 +84,7 @@ class _Rectangulo extends StatelessWidget {
       width: 70.0,
       height: 70.0,
       decoration: BoxDecoration(
-        color: Colors.blue
+        color: Colors.green
       ),
     );
   }
