@@ -9,9 +9,22 @@ class CircularProgressPage extends StatefulWidget {
 }
 
 class _CircularProgressPageState extends State<CircularProgressPage> {
+
+  int porc = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          porc +=10;
+          setState(() {
+            if(porc>100){
+              porc=0;
+            }
+          });
+        }
+      ),
        body: Center(
          child: Container(
            padding: EdgeInsets.all(5.0),
@@ -19,7 +32,7 @@ class _CircularProgressPageState extends State<CircularProgressPage> {
            height: 300.0,
            //color: Colors.red,
            child: CustomPaint(
-             painter: _MiRadialProgress(50),
+             painter: _MiRadialProgress(porc),
            ),
          ),
        ),
