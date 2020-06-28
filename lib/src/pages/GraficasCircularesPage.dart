@@ -28,8 +28,8 @@ class _GraficasCircularesState extends State<GraficasCirculares> {
         child: Container(
           width: 400.0,
           height: 400.0,
-          color: Colors.red,
-          child: RadialProgress(porcentaje: porcentaje,),
+          //color: Colors.red,
+          child: RadialProgress(porcentaje: porcentaje,colorPrimario: Colors.orange,colorSecundario: Colors.red,),
         ) 
         //Text("Porcentaje: $porcentaje %",style: TextStyle(fontSize: 50.0),),
       ),
