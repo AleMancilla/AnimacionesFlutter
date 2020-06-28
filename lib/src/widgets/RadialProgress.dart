@@ -8,7 +8,7 @@ class RadialProgress extends StatefulWidget {
   final Color colorPrimario;
   final Color colorSecundario;
 
-  RadialProgress({this.porcentaje, this.colorPrimario = Colors.blue, this.colorSecundario = Colors.grey});
+  RadialProgress({this.porcentaje = 0.0, this.colorPrimario = Colors.blue, this.colorSecundario = Colors.grey});
 
   @override
   _RadialProgressState createState() => _RadialProgressState();
@@ -95,11 +95,12 @@ class _MiRadialProgress extends CustomPainter{
       //## arco
       final paintArco = new Paint()
       ..strokeWidth = 10
-      ..color = colorPrimario
+      ..color = (this.porcentaje==0)? Colors.transparent : colorPrimario
+      ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke;
 
       //parte que se debera ir llenando
-      double arcAngle =   2* pi *(porcentaje /100);
+      double arcAngle = 2* pi *(porcentaje /100);
       canvas.drawArc(
         Rect.fromCircle(center: center, radius: radio), 
         -pi /2, 

@@ -9,7 +9,7 @@ class GraficasCirculares extends StatefulWidget {
 
 class _GraficasCircularesState extends State<GraficasCirculares> {
 
-  double porcentaje =0;
+  double porcentaje =0.0;
 
   @override
   Widget build(BuildContext context) {
@@ -17,9 +17,9 @@ class _GraficasCircularesState extends State<GraficasCirculares> {
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           setState(() {
-            porcentaje +=10;
-            if(porcentaje > 100){
-              porcentaje =0;
+            porcentaje +=10.0;
+            if(porcentaje > 100.0){
+              porcentaje =0.0;
             }
           });
         }
