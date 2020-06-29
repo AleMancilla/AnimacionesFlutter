@@ -30,7 +30,8 @@ class _Dots extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 700),
       width: double.infinity,
       height: 70.0,
       //color: Colors.red,
@@ -61,7 +62,7 @@ class _Dot extends StatelessWidget {
       height: 12.0,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
-        color: (index == pageViewIndex)? Colors.blue : Colors.grey,
+        color: (index > pageViewIndex - 0.5 && index < pageViewIndex + 0.5)? Colors.blue : Colors.grey,
         shape: BoxShape.circle
       ),
     );
