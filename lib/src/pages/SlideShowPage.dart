@@ -1,21 +1,26 @@
+import 'package:custom_painter/src/Models/SlidesModels.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class SlideShowPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:  Container(
-        child: Column(
-          children: [
-            Expanded(child: _Slides()),
-            _Dots()
-          ],
+    return ChangeNotifierProvider(
+      create: (_)=>SlidesModels(),
+      child: Scaffold(
+        body:  Container(
+          child: Column(
+            children: [
+              Expanded(child: _Slides()),
+              _Dots()
+            ],
+          )
+          //WebsafeSvg.asset("assets/svgs/slide1.svg")
         )
-        //WebsafeSvg.asset("assets/svgs/slide1.svg")
-      )
-        //SvgPicture.asset("assets/svgs/slide1.svg"),
+          //SvgPicture.asset("assets/svgs/slide1.svg"),
+      ),
     );
   }
 }
@@ -50,12 +55,13 @@ class _Dot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final pageViewIndex = Provider.of<SlidesModels>(context).getPosicion;
     return Container(
       width: 12.0,
       height: 12.0,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
-        color:  Colors.grey,
+        color: (index == pageViewIndex)? Colors.blue : Colors.grey,
         shape: BoxShape.circle
       ),
     );
@@ -76,8 +82,12 @@ class __SlidesState extends State<_Slides> {
     // TODO: implement initState
     super.initState();
     pageViewController.addListener(() { 
-      print("Page view ${pageViewController.page}");
+      //print("Page view ${pageViewController.page}");
+
+      Provider.of<SlidesModels>(context, listen: false).setPosicion = pageViewController.page;
     });
+
+
   }
 
   @override
