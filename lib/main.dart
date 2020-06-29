@@ -1,4 +1,5 @@
 import 'package:custom_painter/src/pages/GraficasCircularesPage.dart';
+import 'package:custom_painter/src/pages/SlideShowPage.dart';
 //import 'package:custom_painter/src/pages/HomeOne.dart';
 import 'package:flutter/material.dart';
  
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: GraficasCirculares()
+      home: SlideShowPage()
     );
   }
 }
