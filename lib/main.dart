@@ -1,5 +1,6 @@
-import 'package:custom_painter/src/pages/GraficasCircularesPage.dart';
-import 'package:custom_painter/src/pages/SlideShowPage.dart';
+
+//import 'package:custom_painter/src/Labs/SlideShow.dart';
+import 'package:custom_painter/src/pages/SlidesShowPage.dart';
 //import 'package:custom_painter/src/pages/HomeOne.dart';
 import 'package:flutter/material.dart';
  

@@ -3,24 +3,21 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
-class SlideShowPage extends StatelessWidget {
+class SlideShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (_)=>SlidesModels(),
-      child: Scaffold(
-        body:  Container(
+        create: (_)=>SlidesModels(),
+        child: Center(
           child: Column(
             children: [
               Expanded(child: _Slides()),
               _Dots()
             ],
-          )
-          //WebsafeSvg.asset("assets/svgs/slide1.svg")
-        )
-          //SvgPicture.asset("assets/svgs/slide1.svg"),
-      ),
+          ),
+      )
+      
     );
   }
 }
