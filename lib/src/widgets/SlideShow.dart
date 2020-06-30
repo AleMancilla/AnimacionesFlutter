@@ -5,6 +5,12 @@ import 'package:websafe_svg/websafe_svg.dart';
 
 class SlideShow extends StatelessWidget {
 
+  final List<Widget> slides;
+
+  SlideShow({
+      @required this.slides
+    });
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -12,7 +18,9 @@ class SlideShow extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              Expanded(child: _Slides()),
+              Expanded(
+                child: _Slides(this.slides)
+              ),
               _Dots()
             ],
           ),
@@ -67,6 +75,10 @@ class _Dot extends StatelessWidget {
 }
 class _Slides extends StatefulWidget {
 
+  final List<Widget> slides;
+
+  _Slides(this.slides);
+
   @override
   __SlidesState createState() => __SlidesState();
 }
@@ -100,11 +112,12 @@ class __SlidesState extends State<_Slides> {
     return Container(
       child:PageView(
         controller: pageViewController,
-        children: [
-          _Slide("assets/svgs/slide1.svg"),
-          _Slide("assets/svgs/slide2.svg"),
-          _Slide("assets/svgs/slide3.svg")
-        ],
+        //children: [
+        //  _Slide("assets/svgs/slide1.svg"),
+        //  _Slide("assets/svgs/slide2.svg"),
+        //  _Slide("assets/svgs/slide3.svg")
+        //],
+        children: widget.slides.map((e) => _Slide( e ) ).toList(),
     )
     );
   }
@@ -112,8 +125,8 @@ class __SlidesState extends State<_Slides> {
 
 class _Slide extends StatelessWidget {
 
-  final String svg;
-  _Slide(this.svg);
+  final Widget slide;
+  _Slide(this.slide);
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +134,7 @@ class _Slide extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       padding: EdgeInsets.all(30.0),
-      child: WebsafeSvg.asset(svg) ,
+      child: slide ,
     );
     //WebsafeSvg.asset("assets/svgs/slide1.svg") ;
   }
