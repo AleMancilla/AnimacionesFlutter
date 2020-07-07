@@ -7,10 +7,14 @@ class SlideShow extends StatelessWidget {
 
   final List<Widget> slides;
   final bool posicionDots;
+  final Color colorPrimario;
+  final Color colorSecundario;
 
   SlideShow({
       @required this.slides,
-      this.posicionDots = false
+      this.posicionDots = false, 
+      this.colorPrimario = Colors.red, 
+      this.colorSecundario = Colors.grey
     });
 
   @override
@@ -20,11 +24,11 @@ class SlideShow extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              if(this.posicionDots) _Dots(this.slides.length),
+              if(this.posicionDots) _Dots(this.slides.length,colorPrimario,colorSecundario),
               Expanded(
                 child: _Slides(this.slides)
               ),
-              if(!this.posicionDots) _Dots(this.slides.length),
+              if(!this.posicionDots) _Dots(this.slides.length,colorPrimario,colorSecundario),
             ],
           ),
       )
@@ -36,8 +40,10 @@ class SlideShow extends StatelessWidget {
 
 class _Dots extends StatelessWidget {
   final int cantidadSlides;
+  final Color colorPrimario;
+  final Color colorSecundario;
 
-  _Dots(this.cantidadSlides);
+  _Dots(this.cantidadSlides, this.colorPrimario, this.colorSecundario);
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -47,7 +53,7 @@ class _Dots extends StatelessWidget {
       //color: Colors.red,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(cantidadSlides, (index) => _Dot(index)),
+        children: List.generate(cantidadSlides, (index) => _Dot(index,colorPrimario,colorSecundario)),
         //children: [
         //  _Dot(0),
         //  _Dot(1),
@@ -62,8 +68,10 @@ class _Dots extends StatelessWidget {
 class _Dot extends StatelessWidget {
 
   final int index;
+  final Color colorPrimario;
+  final Color colorSecundario;
 
-  _Dot(this.index);
+  _Dot(this.index, this.colorPrimario, this.colorSecundario);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +81,7 @@ class _Dot extends StatelessWidget {
       height: 12.0,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
-        color: (index > pageViewIndex - 0.5 && index < pageViewIndex + 0.5)? Colors.blue : Colors.grey,
+        color: (index > pageViewIndex - 0.5 && index < pageViewIndex + 0.5)? colorPrimario : colorSecundario,
         shape: BoxShape.circle
       ),
     );
