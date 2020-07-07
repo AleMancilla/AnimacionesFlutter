@@ -1,14 +1,16 @@
 import 'package:custom_painter/src/Models/SlidesModels.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:websafe_svg/websafe_svg.dart';
+//import 'package:websafe_svg/websafe_svg.dart';
 
 class SlideShow extends StatelessWidget {
 
   final List<Widget> slides;
+  final bool posicionDots;
 
   SlideShow({
-      @required this.slides
+      @required this.slides,
+      this.posicionDots = false
     });
 
   @override
@@ -18,10 +20,11 @@ class SlideShow extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              if(this.posicionDots) _Dots(this.slides.length),
               Expanded(
                 child: _Slides(this.slides)
               ),
-              _Dots(this.slides.length)
+              if(!this.posicionDots) _Dots(this.slides.length),
             ],
           ),
       )
@@ -33,6 +36,7 @@ class SlideShow extends StatelessWidget {
 
 class _Dots extends StatelessWidget {
   final int cantidadSlides;
+
   _Dots(this.cantidadSlides);
   @override
   Widget build(BuildContext context) {

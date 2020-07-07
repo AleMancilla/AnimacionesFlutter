@@ -17,6 +17,7 @@ class SlideShowPage extends StatelessWidget {
           Text("Hola Mundo"),
           Container(width: 50.0,height: 50.0,color: Colors.purpleAccent,)
         ],
+        posicionDots: true,
       ),
     );
   }
