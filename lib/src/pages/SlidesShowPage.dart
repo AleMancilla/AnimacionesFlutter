@@ -8,7 +8,8 @@ class SlideShowPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SlideShow(
-        //colorPrimario: Colors.orange,
+        colorPrimario: Colors.orange,
+        bulletPrimario: 20.0,
         slides: [
           WebsafeSvg.asset("assets/svgs/slide1.svg"),
           WebsafeSvg.asset("assets/svgs/slide2.svg"),

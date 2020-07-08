@@ -103,6 +103,7 @@ class __SlidesState extends State<_Slides> {
     return Container(
       child:PageView(
         controller: pageViewController,
+        
         children: [
           _Slide("assets/svgs/slide1.svg"),
           _Slide("assets/svgs/slide2.svg"),

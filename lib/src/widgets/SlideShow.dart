@@ -5,6 +5,9 @@ import 'package:provider/provider.dart';
 
 class SlideShow extends StatelessWidget {
 
+  final double bulletPrimario;
+  final double bulletSecundario;
+
   final List<Widget> slides;
   final bool posicionDots;
   final Color colorPrimario;
@@ -12,7 +15,7 @@ class SlideShow extends StatelessWidget {
 
   SlideShow({
       @required this.slides,
-      this.posicionDots = false, this.colorPrimario = Colors.blue, this.colorSecundario = Colors.grey
+      this.posicionDots = false, this.colorPrimario = Colors.blue, this.colorSecundario = Colors.grey, this.bulletPrimario = 10, this.bulletSecundario = 10
     });
 
   @override
@@ -21,9 +24,14 @@ class SlideShow extends StatelessWidget {
     return ChangeNotifierProvider(
         create: (_)=>_SlideShowModels(),
         child: Center(
-          child: Builder(builder: (BuildContext context) {
+          child: Builder(
+            builder: (BuildContext context) {
             Provider.of<_SlideShowModels>(context).setColorPrimario = this.colorPrimario;
             Provider.of<_SlideShowModels>(context).setColorSecundario = this.colorSecundario;
+
+            Provider.of<_SlideShowModels>(context).setBulletPrimario = this.bulletPrimario;
+            Provider.of<_SlideShowModels>(context).setBulletSecundario = this.bulletSecundario;
+
             return _CreateColumn(posicionDots: posicionDots, slides: slides);
           },
           )
@@ -96,8 +104,8 @@ class _Dot extends StatelessWidget {
     final ssModel = Provider.of<_SlideShowModels>(context);
 
     return Container(
-      width: 12.0,
-      height: 12.0,
+      width: (index > ssModel.getPosicion - 0.5 && index < ssModel.getPosicion + 0.5)?ssModel.getBulletPrimario:ssModel.getBulletSecundario,
+      height: (index > ssModel.getPosicion - 0.5 && index < ssModel.getPosicion + 0.5)?ssModel.getBulletPrimario:ssModel.getBulletSecundario,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
       decoration: BoxDecoration(
         color: (index > ssModel.getPosicion - 0.5 && index < ssModel.getPosicion + 0.5)?
@@ -183,6 +191,9 @@ class _SlideShowModels with ChangeNotifier {
   double _posicion =0;
   Color _colorPrimario = Colors.blue;
   Color _colorSecundario = Colors.grey;
+
+  double _bulletPrimario = 10;
+  double _bulletSecundario = 10;
   
 
   double get getPosicion => this._posicion;
@@ -206,6 +217,16 @@ class _SlideShowModels with ChangeNotifier {
   }
 
 
+  double get getBulletPrimario => this._bulletPrimario;
+  set setBulletPrimario (double bp){
+    this._bulletPrimario = bp;
+    notifyListeners();
+  }
 
+  double get getBulletSecundario => this._bulletSecundario;
+  set setBulletSecundario(double bs){
+    this._bulletSecundario=bs;
+    notifyListeners();
+  }
   
 }
