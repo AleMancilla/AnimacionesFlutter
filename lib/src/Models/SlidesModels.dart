@@ -6,7 +6,9 @@ class SlidesModels with ChangeNotifier {
 
   set setPosicion(double posicion){
     this._posicion = posicion;
-    print("####### $posicion");
+    //print("####### $posicion");
     notifyListeners();
   }
+
+
 }
