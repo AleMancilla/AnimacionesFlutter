@@ -103,7 +103,8 @@ class _Dot extends StatelessWidget {
     //final pageViewIndex = Provider.of<_SlideShowModels>(context).getPosicion;
     final ssModel = Provider.of<_SlideShowModels>(context);
 
-    return Container(
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 800),
       width: (index > ssModel.getPosicion - 0.5 && index < ssModel.getPosicion + 0.5)?ssModel.getBulletPrimario:ssModel.getBulletSecundario,
       height: (index > ssModel.getPosicion - 0.5 && index < ssModel.getPosicion + 0.5)?ssModel.getBulletPrimario:ssModel.getBulletSecundario,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
