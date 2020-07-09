@@ -1,3 +1,4 @@
+import 'package:custom_painter/src/widgets/Pinteres_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class PinteresPage extends StatelessWidget {
@@ -5,9 +6,7 @@ class PinteresPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: PinteresGrid(),
-      ),
+        body: PinteresMenu(),
     );
   }
 }
