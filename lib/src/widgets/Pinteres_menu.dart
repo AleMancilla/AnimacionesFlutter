@@ -13,6 +13,10 @@ class PinteresButton{
 
 class PinteresMenu extends StatelessWidget {
 
+  final bool mostrar ;
+
+  PinteresMenu({this.mostrar = true});
+
   final List<PinteresButton> items = [
     PinteresButton(icon: Icons.pie_chart,onPress: (){print("Icon pie char");}),
     PinteresButton(icon: Icons.search,onPress: (){print("Icon search");}),
@@ -24,8 +28,12 @@ class PinteresMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (_) => _MenuModel(),
-      child: _PinteresMenuBackground(
-        child:_MenuItems(items)
+      child: AnimatedOpacity(
+        opacity: (mostrar)?1.0:0.0,
+        duration: Duration(milliseconds: 250),
+        child: _PinteresMenuBackground(
+          child:_MenuItems(items)
+        ),
       ),
     );
   }

@@ -1,18 +1,22 @@
 import 'package:custom_painter/src/widgets/Pinteres_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:provider/provider.dart';
 class PinteresPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          PinteresGrid(),
-          _PinteresMenuLocation(),
-        ],
+    return ChangeNotifierProvider(
+      create: (_)=> _MenuModel(),
+      child: Scaffold(
+        body: Stack(
+          children: [
+            PinteresGrid(),
+            _PinteresMenuLocation(),
+          ],
+        ),
+          // body: PinteresMenu(),
       ),
-        // body: PinteresMenu(),
     );
   }
 }
@@ -21,13 +25,14 @@ class _PinteresMenuLocation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final mostrar = Provider.of<_MenuModel>(context).getMostrar;
     return Positioned(
       bottom: 30.0,
       child: Container(
        // color: Colors.red,
         width: size.width,
         child: Align(
-          child: PinteresMenu()
+          child: PinteresMenu(mostrar: mostrar,)
         )
       )
     );
@@ -51,9 +56,9 @@ class _PinteresGridState extends State<PinteresGrid> {
     controller.addListener(() { 
       //print("ScrollListener: ${controller.offset}");
       if(controller.offset>scrollAnterior){
-        print("Ocultar menu");
+        Provider.of<_MenuModel>(context,listen: false).setMostrar = false;
       }else{
-        print("Mostrar menu");
+        Provider.of<_MenuModel>(context,listen: false).setMostrar = true;
       }
       scrollAnterior = controller.offset;
     });
@@ -103,5 +108,15 @@ class _PinteresItem extends StatelessWidget {
             child: new Text('$index'),
           ),
         ));
+  }
+}
+
+class _MenuModel with ChangeNotifier{
+  bool _mostrar = true;
+
+  bool get getMostrar => this._mostrar;
+  set setMostrar(bool estado){
+    this._mostrar = estado;
+    notifyListeners();
   }
 }
