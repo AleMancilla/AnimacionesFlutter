@@ -5,24 +5,31 @@ class PinteresPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
           PinteresGrid(),
-          Positioned(
-            bottom: 30.0,
-            child: Container(
-             // color: Colors.red,
-              width: size.width,
-              child: Align(
-                child: PinteresMenu()
-              )
-            )
-          ),
+          _PinteresMenuLocation(),
         ],
       ),
         // body: PinteresMenu(),
+    );
+  }
+}
+
+class _PinteresMenuLocation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Positioned(
+      bottom: 30.0,
+      child: Container(
+       // color: Colors.red,
+        width: size.width,
+        child: Align(
+          child: PinteresMenu()
+        )
+      )
     );
   }
 }
