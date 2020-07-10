@@ -14,7 +14,15 @@ class EmergencyPage extends StatelessWidget {
       //  subtitulo: "Me encantas",
       //  colorTop: Colors.orange,
       //),
-      body: Center(child: BotonGordo()),
+      body: Center(
+        child: BotonGordo(
+          icono: FontAwesomeIcons.carCrash,
+          texto: "Hola Mari :* :*",
+          color1: Colors.blue,
+          color2: Colors.orange,
+          onPress: (){},
+        )
+      ),
     );
   }
 }
