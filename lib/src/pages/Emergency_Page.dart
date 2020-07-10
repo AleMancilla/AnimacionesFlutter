@@ -20,7 +20,7 @@ class EmergencyPage extends StatelessWidget {
           texto: "Hola Mari :* :*",
           color1: Colors.blue,
           color2: Colors.orange,
-          onPress: (){},
+          onPress: (){print("Hola Mari");},
         )
       ),
     );

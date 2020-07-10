@@ -19,26 +19,29 @@ class BotonGordo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return GestureDetector(
+      onTap: this.onPress,
+      child: Stack(
 
-      children: [
-        _backgroundBoton(
-          icono: this.icono,
-          color1: this.color1,
-          color2: this.color2,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(height: 140.0,width: 40.0,),
-            FaIcon(this.icono, color: Colors.white, size: 40.0,),
-            SizedBox(width: 20.0,),
-            Expanded(child: Text("${this.texto}",style: TextStyle( color: Colors.white, fontSize: 18.0),)),
-            FaIcon(FontAwesomeIcons.chevronRight,color: Colors.white,),
-            SizedBox(width: 40.0,),
-          ],
-        )
-      ],
+        children: [
+          _backgroundBoton(
+            icono: this.icono,
+            color1: this.color1,
+            color2: this.color2,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 140.0,width: 40.0,),
+              FaIcon(this.icono, color: Colors.white, size: 40.0,),
+              SizedBox(width: 20.0,),
+              Expanded(child: Text("${this.texto}",style: TextStyle( color: Colors.white, fontSize: 18.0),)),
+              FaIcon(FontAwesomeIcons.chevronRight,color: Colors.white,),
+              SizedBox(width: 40.0,),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
