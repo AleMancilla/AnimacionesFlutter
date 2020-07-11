@@ -54,19 +54,46 @@ class EmergencyPage extends StatelessWidget {
             // padding: EdgeInsets.only(top: 50.0),
             margin: EdgeInsets.only(top: 250.0),
             child: ListView(
+              physics: BouncingScrollPhysics(),
               children: [
                 SizedBox(height: 50.0,),
                 ...itemMap
               ],
             ),
           ),
-          IconHeaderWidget(
-            icono: FontAwesomeIcons.plus, 
-            titulo: "Asistencia Medica", 
-            subtitulo: "Has solicitado emergencia medica"
-          )
+          _Encabezado()
         ],
       )
+    );
+  }
+}
+
+class _Encabezado extends StatelessWidget {
+  
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        
+        IconHeaderWidget(
+          icono: FontAwesomeIcons.plus, 
+          titulo: "Asistencia Medica", 
+          subtitulo: "Has solicitado emergencia medica"
+        ),
+
+        Positioned(
+          right: 10.0,
+          top: 40.0,
+          child: RawMaterialButton(
+            onPressed: (){},
+            shape: CircleBorder(),
+            padding: EdgeInsets.all(15.0),
+            child: FaIcon(FontAwesomeIcons.ellipsisV,color: Colors.white,)
+          )
+        )
+
+      ],
     );
   }
 }
