@@ -3,6 +3,7 @@
 import 'package:custom_painter/src/pages/Emergency_Page.dart';
 import 'package:custom_painter/src/pages/PinteresPage.dart';
 import 'package:custom_painter/src/pages/SlidesShowPage.dart';
+import 'package:custom_painter/src/pages/SliverPage.dart';
 //import 'package:custom_painter/src/pages/HomeOne.dart';
 import 'package:flutter/material.dart';
  
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Material App',
-      home: EmergencyPage()
+      home: SliverPage()
     );
   }
 }
