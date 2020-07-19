@@ -1,6 +1,8 @@
 import 'package:custom_painter/src/routes/Routes.dart';
+import 'package:custom_painter/src/theme/ThemeChanger.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class LaunchesPage extends StatelessWidget {
   @override
@@ -43,6 +45,9 @@ class _ListaOpciones extends StatelessWidget {
 class _MenuPrincipal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final appTheme = Provider.of<ThemeChanger>(context);
+
     return Drawer(
       child: Container(
         child: Column(
@@ -67,20 +72,31 @@ class _MenuPrincipal extends StatelessWidget {
               leading: Icon(Icons.lightbulb_outline,color: Colors.blue,),
               title: Text("Dark mode"),
               trailing: Switch.adaptive(
-                  value: true, 
-                  onChanged: (value){},
+                  value: appTheme.darktheme, 
+                  onChanged: (value){
+                    appTheme.darktheme = value;
+
+                  },
                   activeColor: Colors.green,
                 ),
             ),
 
-            ListTile(
-              leading: Icon(Icons.add_to_home_screen,color: Colors.blue,),
-              title: Text("Custom theme"),
-              trailing: Switch.adaptive(
-                  value: true, 
-                  onChanged: (value){},
-                  activeColor: Colors.green,
-                ),
+            SafeArea(
+              bottom: true,
+              top: false,
+              left: false,
+              right: false,
+              child: ListTile(
+                leading: Icon(Icons.add_to_home_screen,color: Colors.blue,),
+                title: Text("Custom theme"),
+                trailing: Switch.adaptive(
+                    value: appTheme.customtheme, 
+                    onChanged: (value){
+                      appTheme.customtheme = value;
+                    },
+                    activeColor: Colors.green,
+                  ),
+              ),
             )
           ],
         ),
