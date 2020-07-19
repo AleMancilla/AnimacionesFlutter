@@ -1,10 +1,6 @@
 
 //import 'package:custom_painter/src/Labs/SlideShow.dart';
-import 'package:custom_painter/src/pages/Emergency_Page.dart';
 import 'package:custom_painter/src/pages/LauncherPage.dart';
-import 'package:custom_painter/src/pages/PinteresPage.dart';
-import 'package:custom_painter/src/pages/SlidesShowPage.dart';
-import 'package:custom_painter/src/pages/SliverPage.dart';
 import 'package:custom_painter/src/theme/ThemeChanger.dart';
 //import 'package:custom_painter/src/pages/HomeOne.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +23,14 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       title: 'Material App',
       debugShowCheckedModeBanner: false,
-      home: LaunchesPage()
-    );
+      home: 
+      OrientationBuilder(
+        builder: (context, orientation) {
+          print("Orientacion = $orientation");
+          return LaunchesPage();
+        } ,
+         //LaunchesPage()
+        
+    ));
   }
 }
