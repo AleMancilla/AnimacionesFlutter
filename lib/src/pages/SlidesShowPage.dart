@@ -1,5 +1,7 @@
+import 'package:custom_painter/src/theme/ThemeChanger.dart';
 import 'package:custom_painter/src/widgets/SlideShow.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 
 class SlideShowPage extends StatelessWidget {
@@ -24,8 +26,9 @@ class _SlideShowRender extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return SlideShow(
-      colorPrimario: Colors.orange,
+      colorPrimario: (appTheme == ThemeData.dark())?Theme.of(context).primaryColor:Colors.orange,
       bulletPrimario: 20.0,
       slides: [
         WebsafeSvg.asset("assets/svgs/slide1.svg"),
