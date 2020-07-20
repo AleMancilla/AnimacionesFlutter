@@ -1,6 +1,7 @@
 
 //import 'package:custom_painter/src/Labs/SlideShow.dart';
 import 'package:custom_painter/src/pages/LauncherPage.dart';
+import 'package:custom_painter/src/pages/Launcher_Tablet_Page.dart';
 import 'package:custom_painter/src/theme/ThemeChanger.dart';
 //import 'package:custom_painter/src/pages/HomeOne.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,16 @@ class MyApp extends StatelessWidget {
       home: 
       OrientationBuilder(
         builder: (context, orientation) {
-          print("Orientacion = $orientation");
-          return LaunchesPage();
+          final screenSize = MediaQuery.of(context).size;
+
+          if( screenSize.width > 500){
+            return LaunchesTabletPage();
+          }else{
+            return LaunchesPage();
+          }
+
+          // print("Orientacion = $orientation");
+          // return LaunchesPage();
         } ,
          //LaunchesPage()
         
