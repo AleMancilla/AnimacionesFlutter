@@ -1,5 +1,6 @@
 
 //import 'package:custom_painter/src/Labs/SlideShow.dart';
+import 'package:custom_painter/src/Models/layoutModel.dart';
 import 'package:custom_painter/src/pages/LauncherPage.dart';
 import 'package:custom_painter/src/pages/Launcher_Tablet_Page.dart';
 import 'package:custom_painter/src/theme/ThemeChanger.dart';
@@ -9,8 +10,11 @@ import 'package:provider/provider.dart';
  
 void main() => runApp(
   ChangeNotifierProvider(
-    create: (_)=>ThemeChanger(2),
-    child: MyApp()
+    create: (_)=> new LayoutPage(),
+    child: ChangeNotifierProvider(
+      create: (_)=>ThemeChanger(2),
+      child: MyApp()
+    ),
   )
 );
  

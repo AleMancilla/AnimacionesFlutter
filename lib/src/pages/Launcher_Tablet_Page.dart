@@ -1,3 +1,4 @@
+import 'package:custom_painter/src/Models/layoutModel.dart';
 import 'package:custom_painter/src/pages/SlidesShowPage.dart';
 import 'package:custom_painter/src/routes/Routes.dart';
 import 'package:custom_painter/src/theme/ThemeChanger.dart';
@@ -6,8 +7,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class LaunchesTabletPage extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
+
+    final layoutPage  = Provider.of<LayoutPage>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Dise;os en flutter  - tablet"),
@@ -28,7 +34,7 @@ class LaunchesTabletPage extends StatelessWidget {
 
           ),
 
-          Expanded(child: SlideShowPage())
+          Expanded(child: layoutPage.currentPage)
         ],
       ),
       // body: _ListaOpciones(),
@@ -54,7 +60,9 @@ class _ListaOpciones extends StatelessWidget {
         title: Text(pageRoutes[i].titulo),
         trailing: Icon(Icons.chevron_right,color: appTheme.accentColor,),
         onTap: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>pageRoutes[i].page));
+          final layoutPage  = Provider.of<LayoutPage>(context,listen: false);
+          layoutPage.currentPage = pageRoutes[i].page;
+          // Navigator.push(context, MaterialPageRoute(builder: (context)=>pageRoutes[i].page));
         },
       ),
       
